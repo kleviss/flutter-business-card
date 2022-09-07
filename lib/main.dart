@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'customCard.dart';
+import 'scoreRow.dart';
+import 'widgets/neo_text.dart';
 
 void main() => runApp(const MyApp());
 
@@ -37,8 +39,9 @@ class MyApp extends StatelessWidget {
                         radius: 50.0,
                         backgroundImage: AssetImage('images/klevis.jpeg'),
                       ),
+                      NeoText(text: "BVB"),
                       Text(
-                        'Klevis X.',
+                        'Neuer, M.',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20.0,
@@ -85,136 +88,45 @@ class MyApp extends StatelessWidget {
                 ],
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                Text(
-                  'Average Score',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.0,
-                    fontFamily: 'Lato',
-                  ),
-                ),
-                SizedBox(
-                  width: 20.0,
-                ),
-                Text(
-                  '23',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15.0,
-                    letterSpacing: 1.0,
-                    fontFamily: 'Lato',
-                  ),
-                ),
-                SizedBox(
-                  width: 20.0,
-                ),
-                SizedBox(
-                  height: 30.0,
-                  child: VerticalDivider(
-                    color: Colors.white,
-                  ),
-                ),
-                SizedBox(
-                  width: 20.0,
-                ),
-                Text(
-                  'Total Score',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.0,
-                    fontFamily: 'Lato',
-                  ),
-                ),
-                SizedBox(
-                  width: 20.0,
-                ),
-                Text(
-                  '145',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15.0,
-                    letterSpacing: 1.0,
-                    fontFamily: 'Lato',
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            ScoreRow(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: const [
-                  SizedBox(
-                    width: 23.0,
+                  NeoText(
+                    text: "⚽️Goals: 2",
                   ),
-                  Text(
-                    ' Score',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.0,
-                      fontFamily: 'Lato',
-                    ),
+                  NeoText(
+                    text: "🅰️Assists: 6",
                   ),
-                  SizedBox(
-                    width: 20.0,
-                  ),
-                  Text(
-                    '23',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15.0,
-                      letterSpacing: 1.0,
-                      fontFamily: 'Lato',
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20.0,
-                  ),
-                  SizedBox(
-                    height: 30.0,
-                    child: VerticalDivider(
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20.0,
-                  ),
-                  Text(
-                    ' Score',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.0,
-                      fontFamily: 'Lato',
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20.0,
-                  ),
-                  Text(
-                    '145',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15.0,
-                      letterSpacing: 1.0,
-                      fontFamily: 'Lato',
-                    ),
+                  NeoText(
+                    text: "🧤Saves: 26",
                   ),
                 ],
               ),
             ),
             const Padding(
-                padding: EdgeInsets.fromLTRB(8.0, 18.0, 8.0, 0.0),
+              padding: EdgeInsets.all(8.0),
+              child: Divider(
+                endIndent: 180.0,
+                indent: 180.0,
+                color: Colors.white,
+              ),
+            ),
+            ScoreRow(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: const [
+                  NeoText(
+                    text: "🔥Score: 262",
+                  ),
+                  NeoText(
+                    text: "📈Value: 60k",
+                  ),
+                ],
+              ),
+            ),
+            const Padding(
+                padding: EdgeInsets.fromLTRB(8.0, 38.0, 8.0, 0.0),
                 child: Text(
                   'Today\'s Stats',
                   style: TextStyle(
@@ -227,6 +139,29 @@ class MyApp extends StatelessWidget {
                 )),
             Padding(
               padding: const EdgeInsets.fromLTRB(4.0, 18.0, 4.0, 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: const [
+                  CustomCard(),
+                  CustomCard(),
+                  CustomCard(),
+                ],
+              ),
+            ),
+            const Padding(
+                padding: EdgeInsets.fromLTRB(8.0, 18.0, 8.0, 18.0),
+                child: Text(
+                  'Overall Stats',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.0,
+                    fontFamily: 'Lato',
+                  ),
+                )),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(4.0, 0.0, 4.0, 18.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: const [
