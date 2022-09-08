@@ -3,8 +3,8 @@ import 'widgets/neo_text.dart';
 import 'customCard.dart';
 
 class StatsSection extends StatelessWidget {
-  final Widget? sectionTitle;
-  final Widget? sectionCards;
+  final Widget sectionTitle;
+  final Widget sectionCards;
 
   const StatsSection(
       {super.key, required this.sectionTitle, required this.sectionCards});
@@ -15,8 +15,8 @@ class StatsSection extends StatelessWidget {
     // of paper on which the UI appears.
     return (Column(
       children: [
-        sectionTitle!,
-        sectionCards!,
+        sectionTitle,
+        sectionCards,
       ],
     ));
   }
