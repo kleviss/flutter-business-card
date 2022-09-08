@@ -105,7 +105,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
             const Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8.0),
               child: Divider(
                 endIndent: 180.0,
                 indent: 180.0,
@@ -125,10 +125,47 @@ class MyApp extends StatelessWidget {
                 ],
               ),
             ),
+            Padding(
+                padding: const EdgeInsets.fromLTRB(8.0, 38.0, 8.0, 0.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Today\'s Stats',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.0,
+                        fontFamily: 'Alto',
+                      ),
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          null;
+                        },
+                        tooltip: "View today's stats",
+                        splashColor: Colors.green.shade400,
+                        splashRadius: 25.0,
+                        icon: const Icon(Icons.arrow_forward_ios,
+                            color: Colors.white)),
+                  ],
+                )),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(4.0, 0.0, 4.0, 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  CustomCard(),
+                  CustomCard(),
+                  CustomCard(),
+                ],
+              ),
+            ),
             const Padding(
-                padding: EdgeInsets.fromLTRB(8.0, 38.0, 8.0, 0.0),
+                padding: EdgeInsets.fromLTRB(8.0, 18.0, 8.0, 8.0),
                 child: Text(
-                  'Today\'s Stats',
+                  'Overall Stats',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 15.0,
@@ -138,9 +175,9 @@ class MyApp extends StatelessWidget {
                   ),
                 )),
             Padding(
-              padding: const EdgeInsets.fromLTRB(4.0, 18.0, 4.0, 8.0),
+              padding: const EdgeInsets.fromLTRB(4.0, 0.0, 4.0, 8.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [
                   CustomCard(),
                   CustomCard(),
@@ -149,7 +186,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
             const Padding(
-                padding: EdgeInsets.fromLTRB(8.0, 18.0, 8.0, 18.0),
+                padding: EdgeInsets.fromLTRB(8.0, 18.0, 8.0, 8.0),
                 child: Text(
                   'Overall Stats',
                   style: TextStyle(
@@ -163,30 +200,7 @@ class MyApp extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(4.0, 0.0, 4.0, 18.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: const [
-                  CustomCard(),
-                  CustomCard(),
-                  CustomCard(),
-                ],
-              ),
-            ),
-            const Padding(
-                padding: EdgeInsets.fromLTRB(8.0, 18.0, 8.0, 18.0),
-                child: Text(
-                  'Overall Stats',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.0,
-                    fontFamily: 'Lato',
-                  ),
-                )),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(4.0, 0.0, 4.0, 18.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [
                   CustomCard(),
                   CustomCard(),
