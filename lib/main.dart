@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkedin_iam_rich/widgets/header_row.dart';
 import 'customCard.dart';
 import 'scoreRow.dart';
 import 'widgets/neo_text.dart';
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -30,84 +32,22 @@ class MyApp extends StatelessWidget {
         ),
         backgroundColor: Colors.black12,
         body: ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: const <Widget>[
-                      CircleAvatar(
-                        radius: 50.0,
-                        backgroundImage: AssetImage('images/klevis.jpeg'),
-                      ),
-                      NeoText(text: "BVB"),
-                      Text(
-                        'Neuer, M.',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.0,
-                          fontFamily: 'Lato',
-                        ),
-                      ),
-                      Chip(
-                        label: Text('Goalkeeper'),
-                        padding: EdgeInsets.all(8.0),
-                        visualDensity: VisualDensity.compact,
-                        backgroundColor: Colors.white,
-                        shape: StadiumBorder(
-                          side: BorderSide(
-                            color: Color(0xFF1DB954),
-                            width: 1.0,
-                          ),
-                        ),
-                        avatar: CircleAvatar(
-                          backgroundColor: Colors.black,
-                          child: Icon(
-                            Icons.sports_soccer,
-                            color: Colors.white,
-                          ),
-                        ),
-                        labelStyle: TextStyle(
-                          color: Colors.black,
-                          fontSize: 10.0,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.0,
-                          fontFamily: 'Lato',
-                        ),
-                      ),
-                      SizedBox(
-                        height: 0.0,
-                        width: 50.0,
-                        // child: Divider(
-                        //   color: Colors.white,
-                        // ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+          children: const [
+            HeaderRow(),
             ScoreRow(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: const [
-                  NeoText(
-                    text: "⚽️Goals: 2",
-                  ),
-                  NeoText(
-                    text: "🅰️Assists: 6",
-                  ),
-                  NeoText(
-                    text: "🧤Saves: 26",
-                  ),
-                ],
-              ),
+              children: [
+                NeoText(
+                  text: "⚽️Goals: 2",
+                ),
+                NeoText(
+                  text: "🅰️Assists: 6",
+                ),
+                NeoText(
+                  text: "🧤Saves: 26",
+                ),
+              ],
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8.0),
               child: Divider(
                 endIndent: 180.0,
@@ -116,25 +56,30 @@ class MyApp extends StatelessWidget {
               ),
             ),
             ScoreRow(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: const [
-                  NeoText(
-                    text: "🔥Score: 262",
-                  ),
-                  NeoText(
-                    text: "📈Value: 60k",
-                  ),
-                ],
+              children: [
+                NeoText(
+                  text: "🔥Score: 262",
+                ),
+                NeoText(
+                  text: "📈Value: 60k",
+                ),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8.0),
+              child: Divider(
+                endIndent: 180.0,
+                indent: 180.0,
+                color: Colors.white,
               ),
             ),
-            const StatsSection(
+            StatsSection(
                 sectionTitle: SectionTitle(title: "Today\'s Stats"),
                 sectionCards: CardsSection()),
-            const StatsSection(
+            StatsSection(
                 sectionTitle: SectionTitle(title: "Overall Stats"),
                 sectionCards: CardsSection()),
-            const StatsSection(
+            StatsSection(
                 sectionTitle: SectionTitle(title: "Club Stats"),
                 sectionCards: CardsSection()),
           ],
