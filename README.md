@@ -1,6 +1,11 @@
-# linkedin_iam_rich
+# SPITCH Player Profile
 
-A new Flutter project to learn how to use Flutter by creating a simple contact card app.
+A Flutter project to revisit Flutter by creating a simple profile page app.
+
+# Screenshot 08.09.2022
+
+<img width="607" alt="Bildschirmfoto 2022-09-08 um 09 13 50" src="https://user-images.githubusercontent.com/37313988/189058653-5f3db606-7eb8-4497-9212-87d9aa212f54.png">
+
 
 # Screenshot 07.09.2022
 
