@@ -10,7 +10,7 @@ class CardsSection extends StatelessWidget {
     // Material is a conceptual piece
     // of paper on which the UI appears.
     return (Padding(
-      padding: const EdgeInsets.fromLTRB(4.0, 0.0, 4.0, 8.0),
+      padding: const EdgeInsets.fromLTRB(10.0, 0.0, 4.0, 10.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [

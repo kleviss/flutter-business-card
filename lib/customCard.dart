@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkedin_iam_rich/widgets/neo_text.dart';
 
 class CustomCard extends StatelessWidget {
   const CustomCard({super.key});
@@ -8,6 +9,10 @@ class CustomCard extends StatelessWidget {
     // Material is a conceptual piece
     // of paper on which the UI appears.
     return Card(
+      color: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(3.0),
         child: Column(
@@ -51,66 +56,3 @@ class CustomCard extends StatelessWidget {
     );
   }
 }
-
-
-// Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//               children: const [
-//                 Text(
-//                   'Average Score',
-//                   style: TextStyle(
-//                     color: Colors.white,
-//                     fontSize: 15.0,
-//                     fontWeight: FontWeight.bold,
-//                     letterSpacing: 1.0,
-//                     fontFamily: 'Lato',
-//                   ),
-//                 ),
-//                 SizedBox(
-//                   width: 20.0,
-//                 ),
-//                 Text(
-//                   '23',
-//                   style: TextStyle(
-//                     color: Colors.white,
-//                     fontSize: 15.0,
-//                     letterSpacing: 1.0,
-//                     fontFamily: 'Lato',
-//                   ),
-//                 ),
-//                 SizedBox(
-//                   width: 20.0,
-//                 ),
-//                 SizedBox(
-//                   height: 30.0,
-//                   child: VerticalDivider(
-//                     color: Colors.white,
-//                   ),
-//                 ),
-//                 SizedBox(
-//                   width: 20.0,
-//                 ),
-//                 Text(
-//                   'Total Score',
-//                   style: TextStyle(
-//                     color: Colors.white,
-//                     fontSize: 15.0,
-//                     fontWeight: FontWeight.bold,
-//                     letterSpacing: 1.0,
-//                     fontFamily: 'Lato',
-//                   ),
-//                 ),
-//                 SizedBox(
-//                   width: 20.0,
-//                 ),
-//                 Text(
-//                   '145',
-//                   style: TextStyle(
-//                     color: Colors.white,
-//                     fontSize: 15.0,
-//                     letterSpacing: 1.0,
-//                     fontFamily: 'Lato',
-//                   ),
-//                 ),
-//               ],
-//             ),
