@@ -7,7 +7,7 @@ class HeaderRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.fromLTRB(8, 10, 8, 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -17,7 +17,7 @@ class HeaderRow extends StatelessWidget {
                 radius: 50.0,
                 backgroundImage: AssetImage('images/klevis.jpeg'),
               ),
-              NeoText(text: "BVB"),
+              NeoText(text: "BVB", fontSize: 10.0),
               Text(
                 'Neuer, M.',
                 style: TextStyle(
@@ -48,7 +48,7 @@ class HeaderRow extends StatelessWidget {
                 ),
                 labelStyle: TextStyle(
                   color: Colors.black,
-                  fontSize: 10.0,
+                  fontSize: 12.0,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1.0,
                   fontFamily: 'Lato',
