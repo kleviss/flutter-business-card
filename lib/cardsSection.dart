@@ -3,7 +3,9 @@ import 'widgets/neo_text.dart';
 import 'customCard.dart';
 
 class CardsSection extends StatelessWidget {
-  const CardsSection({super.key});
+  final List<Widget> children;
+
+  const CardsSection({super.key, required this.children});
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +15,7 @@ class CardsSection extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(10.0, 0.0, 4.0, 10.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          CustomCard(),
-          CustomCard(),
-          CustomCard(),
-        ],
+        children: children,
       ),
     ));
   }

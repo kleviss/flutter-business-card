@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8.0),
+              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8.0),
               child: Divider(
                 endIndent: 180.0,
                 indent: 180.0,
@@ -65,23 +65,112 @@ class MyApp extends StatelessWidget {
                 ),
               ],
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8.0),
-              child: Divider(
-                endIndent: 180.0,
-                indent: 180.0,
-                color: Colors.white,
-              ),
-            ),
             StatsSection(
                 sectionTitle: SectionTitle(title: "Today\'s Stats"),
-                sectionCards: CardsSection()),
+                sectionCards: CardsSection(
+                  children: [
+                    CustomCard(
+                      icon: Icon(
+                        Icons.sports_hockey_outlined,
+                        color: Colors.black,
+                        size: 40.0,
+                      ),
+                      title: "Bochum",
+                      subtitle: "Club",
+                    ),
+                    // card for player position
+                    CustomCard(
+                      icon: Icon(
+                        //age icon
+                        Icons.person,
+                        color: Colors.black,
+                        size: 40.0,
+                      ),
+                      title: "Forward",
+                      subtitle: "Position",
+                    ),
+                    // card for player age
+                    CustomCard(
+                      icon: Icon(
+                        Icons.sports_soccer,
+                        color: Colors.black,
+                        size: 40.0,
+                      ),
+                      title: "33",
+                      subtitle: "Age",
+                    ),
+                  ],
+                )),
             StatsSection(
                 sectionTitle: SectionTitle(title: "Overall Stats"),
-                sectionCards: CardsSection()),
+                sectionCards: CardsSection(
+                  children: [
+                    CustomCard(
+                      icon: Icon(
+                        Icons.sports_soccer,
+                        color: Colors.black,
+                        size: 40.0,
+                      ),
+                      title: "Barca",
+                      subtitle: "Club",
+                    ),
+                    // card for player position
+                    CustomCard(
+                      icon: Icon(
+                        Icons.sports_soccer,
+                        color: Colors.black,
+                        size: 40.0,
+                      ),
+                      title: "Defender",
+                      subtitle: "Position",
+                    ),
+                    // card for player age
+                    CustomCard(
+                      icon: Icon(
+                        Icons.sports_soccer,
+                        color: Colors.black,
+                        size: 40.0,
+                      ),
+                      title: "40",
+                      subtitle: "Age",
+                    ),
+                  ],
+                )),
             StatsSection(
                 sectionTitle: SectionTitle(title: "Club Stats"),
-                sectionCards: CardsSection()),
+                sectionCards: CardsSection(
+                  children: [
+                    CustomCard(
+                      icon: Icon(
+                        Icons.sports_hockey_outlined,
+                        color: Colors.black,
+                        size: 40.0,
+                      ),
+                      title: "Bochum",
+                      subtitle: "Club",
+                    ),
+                    // card for player position
+                    CustomCard(
+                      icon: Icon(
+                        Icons.sports_soccer,
+                        color: Colors.black,
+                        size: 40.0,
+                      ),
+                      title: "Forward",
+                      subtitle: "Position",
+                    ),
+                    // card for player age
+                    CustomCard(
+                      icon: Icon(
+                        Icons.sports_soccer,
+                        color: Colors.black,
+                        size: 40.0,
+                      ),
+                      title: "33",
+                      subtitle: "Age",
+                    ),
+                  ],
+                )),
           ],
         ),
       ),
