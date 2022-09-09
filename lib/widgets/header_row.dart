@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'neo_text.dart';
 
 class HeaderRow extends StatelessWidget {
-  const HeaderRow({super.key});
+  final String clubName;
+
+  const HeaderRow({super.key, required this.clubName});
 
   @override
   Widget build(BuildContext context) {
@@ -12,13 +14,13 @@ class HeaderRow extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Column(
-            children: const <Widget>[
-              CircleAvatar(
+            children: <Widget>[
+              const CircleAvatar(
                 radius: 50.0,
                 backgroundImage: AssetImage('images/klevis.jpeg'),
               ),
-              NeoText(text: "BVB", fontSize: 10.0),
-              Text(
+              NeoText(text: clubName, fontSize: 10.0),
+              const Text(
                 'Neuer, M.',
                 style: TextStyle(
                   color: Colors.white,
@@ -28,7 +30,7 @@ class HeaderRow extends StatelessWidget {
                   fontFamily: 'Lato',
                 ),
               ),
-              Chip(
+              const Chip(
                 label: Text('Goalkeeper'),
                 padding: EdgeInsets.all(8.0),
                 visualDensity: VisualDensity.compact,
@@ -54,7 +56,7 @@ class HeaderRow extends StatelessWidget {
                   fontFamily: 'Lato',
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 0.0,
                 width: 50.0,
                 // child: Divider(
