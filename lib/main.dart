@@ -25,11 +25,20 @@ Future<PlayerInfo> fetchContestants() async {
     String data = response.body;
     var playerData = jsonDecode(data)['players'];
 
-    // find a player in th response whose id is a8e69669-b4bb-5cb3-9bec-7d860fc080b1
+    // find a player in the response whose id is a8e69669-b4bb-5cb3-9bec-7d860fc080b1
     var player = playerData.firstWhere(
         (element) => element['id'] == 'a8e69669-b4bb-5cb3-9bec-7d860fc080b1');
 
     print(player);
+
+    var clubData = jsonDecode(data)['clubs'];
+
+    // find a club whose id is equal to the club_id of the player
+    var club =
+        clubData.firstWhere((element) => element['id'] == player['club_id']);
+
+    print(club['abbreviation']);
+
     return PlayerInfo.fromJson(player);
   } else {
     // If that call was not successful, throw an error.
