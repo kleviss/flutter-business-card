@@ -2,6 +2,10 @@
 
 A Flutter project to revisit Flutter by creating a simple profile page app.
 
+# Screenshot 09.09.2022
+
+<img width="607" alt="Bildschirmfoto 2022-09-09 um 08 59 57" src="https://user-images.githubusercontent.com/37313988/189290651-2c2b9799-e81f-480e-b340-13be01aa9873.png">
+
 # Screenshot 08.09.2022
 
 <img width="607" alt="Bildschirmfoto 2022-09-08 um 09 13 50" src="https://user-images.githubusercontent.com/37313988/189058653-5f3db606-7eb8-4497-9212-87d9aa212f54.png">
