@@ -2,9 +2,19 @@ import 'package:flutter/material.dart';
 import 'neo_text.dart';
 
 class HeaderRow extends StatelessWidget {
+  final String playerAvatar;
   final String clubName;
+  final String playerName;
+  final String playerSurname;
+  final String playerPosition;
 
-  const HeaderRow({super.key, required this.clubName});
+  const HeaderRow(
+      {super.key,
+      required this.playerAvatar,
+      required this.clubName,
+      required this.playerName,
+      required this.playerSurname,
+      required this.playerPosition});
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +25,14 @@ class HeaderRow extends StatelessWidget {
         children: [
           Column(
             children: <Widget>[
-              const CircleAvatar(
+              CircleAvatar(
                 radius: 50.0,
-                backgroundImage: AssetImage('images/klevis.jpeg'),
+                backgroundImage: NetworkImage(playerAvatar),
               ),
               NeoText(text: clubName, fontSize: 10.0),
-              const Text(
-                'Neuer, M.',
-                style: TextStyle(
+              Text(
+                '$playerName $playerSurname',
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
@@ -30,25 +40,29 @@ class HeaderRow extends StatelessWidget {
                   fontFamily: 'Lato',
                 ),
               ),
-              const Chip(
-                label: Text('Goalkeeper'),
-                padding: EdgeInsets.all(8.0),
+              Chip(
+                label: Text(playerPosition.toUpperCase(),
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 10.0,
+                    )),
+                padding: const EdgeInsets.all(8.0),
                 visualDensity: VisualDensity.compact,
                 backgroundColor: Colors.white,
-                shape: StadiumBorder(
+                shape: const StadiumBorder(
                   side: BorderSide(
                     color: Color(0xFF1DB954),
                     width: 1.0,
                   ),
                 ),
-                avatar: CircleAvatar(
+                avatar: const CircleAvatar(
                   backgroundColor: Colors.black,
                   child: Icon(
                     Icons.sports_soccer,
                     color: Colors.white,
                   ),
                 ),
-                labelStyle: TextStyle(
+                labelStyle: const TextStyle(
                   color: Colors.black,
                   fontSize: 12.0,
                   fontWeight: FontWeight.bold,

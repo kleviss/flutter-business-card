@@ -15,20 +15,63 @@ import 'dart:convert';
 void main() => runApp(MyApp());
 
 // function to call https://api.spitch.live/contestants?competition_id=6by3h89i2eykc341oz7lv1ddd
-Future<String> fetchContestants() async {
+Future<PlayerInfo> fetchContestants() async {
   final response = await http.get(Uri.parse(
       'https://api.spitch.live/contestants?competition_id=6by3h89i2eykc341oz7lv1ddd'));
 
   if (response.statusCode == 200) {
+    // find a player in th response whose id is a8e69669-b4bb-5cb3-9bec-7d860fc080b1
     // If the call to the server was successful, parse the JSON
     String data = response.body;
-    // convert the data to JSON
-    var clubsData = jsonDecode(data)['clubs'][0]['name'];
-    print(clubsData);
-    return (clubsData);
+    var playerData = jsonDecode(data)['players'];
+
+    // find a player in th response whose id is a8e69669-b4bb-5cb3-9bec-7d860fc080b1
+    var player = playerData.firstWhere(
+        (element) => element['id'] == 'a8e69669-b4bb-5cb3-9bec-7d860fc080b1');
+
+    print(player);
+    return PlayerInfo.fromJson(player);
   } else {
     // If that call was not successful, throw an error.
     throw Exception('Failed to load post');
+  }
+}
+
+// create a class to hold the data and put it in a Factory List
+class PlayerInfo {
+  final String name;
+  final String surname;
+  final String id;
+  final String clubId;
+  final String position;
+  final int jerseyNumber;
+  final String image;
+  final int totalScore;
+  final int avgScore;
+
+  PlayerInfo(
+      {required this.name,
+      required this.surname,
+      required this.id,
+      required this.clubId,
+      required this.position,
+      required this.jerseyNumber,
+      required this.image,
+      required this.totalScore,
+      required this.avgScore});
+
+  factory PlayerInfo.fromJson(Map<String, dynamic> json) {
+    return PlayerInfo(
+      name: json['first_name'],
+      surname: json['last_name'],
+      id: json['id'],
+      clubId: json['club_id'],
+      position: json['position'],
+      jerseyNumber: json['jersey_number'],
+      image: json['avatar_urls']['large'],
+      totalScore: json['total_score'],
+      avgScore: json['avg_score'],
+    );
   }
 }
 
@@ -76,7 +119,12 @@ class _MyAppState extends State<MyApp> {
             if (snapshot.hasData) {
               return ListView(
                 children: [
-                  HeaderRow(clubName: snapshot.data),
+                  HeaderRow(
+                      playerAvatar: snapshot.data.image,
+                      clubName: snapshot.data!.clubId,
+                      playerName: snapshot.data!.name,
+                      playerSurname: snapshot.data!.surname,
+                      playerPosition: snapshot.data!.position),
                   const ScoreRow(
                     children: [
                       NeoText(
