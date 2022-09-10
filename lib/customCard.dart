@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:linkedin_iam_rich/widgets/neo_text.dart';
 
 class CustomCard extends StatelessWidget {
-  final Icon icon;
+  final Icon cardIcon;
   final String title;
   final String subtitle;
 
   const CustomCard(
       {super.key,
-      required this.icon,
+      required this.cardIcon,
       required this.title,
       required this.subtitle});
 
@@ -30,7 +30,7 @@ class CustomCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              icon,
+              cardIcon,
               const SizedBox(
                 height: 8.0,
               ),
