@@ -14,30 +14,26 @@ import 'dart:convert';
 
 void main() => runApp(MyApp());
 
+const String URL =
+    'https://api.spitch.live/contestants?competition_id=6by3h89i2eykc341oz7lv1ddd';
+
 // function to call https://api.spitch.live/contestants?competition_id=6by3h89i2eykc341oz7lv1ddd
 Future<PlayerInfo> fetchContestants() async {
-  final response = await http.get(Uri.parse(
-      'https://api.spitch.live/contestants?competition_id=6by3h89i2eykc341oz7lv1ddd'));
+  final response = await http.get(Uri.parse(URL));
 
   if (response.statusCode == 200) {
-    // find a player in th response whose id is a8e69669-b4bb-5cb3-9bec-7d860fc080b1
-    // If the call to the server was successful, parse the JSON
     String data = response.body;
-    var playerData = jsonDecode(data)['players'];
 
-    // find a player in the response whose id is a8e69669-b4bb-5cb3-9bec-7d860fc080b1
+    var playerData = jsonDecode(data)['players'];
     var player = playerData.firstWhere(
         (element) => element['id'] == 'a8e69669-b4bb-5cb3-9bec-7d860fc080b1');
-
     print(player);
 
     var clubData = jsonDecode(data)['clubs'];
-
-    // find a club whose id is equal to the club_id of the player
     var club =
         clubData.firstWhere((element) => element['id'] == player['club_id']);
-
-    print(club['abbreviation']);
+    print(club);
+    ;
 
     return PlayerInfo.fromJson(player);
   } else {
@@ -45,6 +41,12 @@ Future<PlayerInfo> fetchContestants() async {
     throw Exception('Failed to load post');
   }
 }
+
+// So, I am successfully getting the data that I want,
+// as I can see from the print methods, but I want to
+// return both playerData and clubData so I can use this
+// information later on FutureBuilder widget.
+// I am not sure how to do this, as I am new to Dart and Flutter.
 
 // create a class to hold the data and put it in a Factory List
 class PlayerInfo {
@@ -129,8 +131,9 @@ class _MyAppState extends State<MyApp> {
               return ListView(
                 children: [
                   HeaderRow(
-                      playerAvatar: snapshot.data.image,
-                      clubName: snapshot.data!.clubId,
+                      playerAvatar: snapshot.data!.image,
+                      clubName:
+                          snapshot.data!.clubId.toString().substring(0, 8),
                       playerName: snapshot.data!.name,
                       playerSurname: snapshot.data!.surname,
                       playerPosition: snapshot.data!.position),
@@ -155,42 +158,55 @@ class _MyAppState extends State<MyApp> {
                       color: Colors.white,
                     ),
                   ),
-                  const ScoreRow(
+                  ScoreRow(
                     children: [
                       NeoText(
-                        text: "🔥Score: 262",
+                        text: '🔥Score: ${snapshot.data!.totalScore}',
                       ),
                       NeoText(
-                        text: "📈Value: 60k",
+                        text: "📈Value: ${snapshot.data!.avgScore}¢",
                       ),
                     ],
                   ),
-                  const StatsSection(
-                      sectionTitle: SectionTitle(title: "Today\'s Stats"),
+                  StatsSection(
+                      sectionTitle: const SectionTitle(title: "Player\'s Info"),
                       sectionCards: CardsSection(
                         children: [
                           CustomCard(
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.sports_hockey_outlined,
                               color: Colors.black,
                               size: 40.0,
                             ),
-                            title: "Bochum",
+                            title: snapshot.data!.clubId
+                                .toString()
+                                .substring(0, 5),
                             subtitle: "Club",
                           ),
                           // card for player position
-                          CustomCard(
+                          const CustomCard(
                             icon: Icon(
                               //age icon
-                              Icons.person,
+                              Icons.map_rounded,
                               color: Colors.black,
                               size: 40.0,
                             ),
-                            title: "Forward",
-                            subtitle: "Position",
+                            title: "Germany",
+                            subtitle: "Country",
+                          ),
+                          // card for player position
+                          const CustomCard(
+                            icon: Icon(
+                              //age icon
+                              Icons.map_rounded,
+                              color: Colors.black,
+                              size: 40.0,
+                            ),
+                            title: "Germany",
+                            subtitle: "Country",
                           ),
                           // card for player age
-                          CustomCard(
+                          const CustomCard(
                             icon: Icon(
                               Icons.sports_soccer,
                               color: Colors.black,
@@ -202,37 +218,46 @@ class _MyAppState extends State<MyApp> {
                         ],
                       )),
                   const StatsSection(
-                      sectionTitle: SectionTitle(title: "Overall Stats"),
+                      sectionTitle: SectionTitle(title: "Matchday Stats"),
                       sectionCards: CardsSection(
                         children: [
                           CustomCard(
                             icon: Icon(
-                              Icons.sports_soccer,
+                              Icons.healing,
                               color: Colors.black,
                               size: 40.0,
                             ),
-                            title: "Barca",
-                            subtitle: "Club",
+                            title: "Injured",
+                            subtitle: "Condition",
                           ),
                           // card for player position
                           CustomCard(
                             icon: Icon(
-                              Icons.sports_soccer,
+                              Icons.event_seat_rounded,
                               color: Colors.black,
                               size: 40.0,
                             ),
-                            title: "Defender",
-                            subtitle: "Position",
+                            title: "Bench",
+                            subtitle: "Lineup",
                           ),
                           // card for player age
                           CustomCard(
                             icon: Icon(
-                              Icons.sports_soccer,
+                              Icons.show_chart_rounded,
                               color: Colors.black,
                               size: 40.0,
                             ),
                             title: "40",
-                            subtitle: "Age",
+                            subtitle: "Trend",
+                          ),
+                          CustomCard(
+                            icon: Icon(
+                              Icons.show_chart_rounded,
+                              color: Colors.black,
+                              size: 40.0,
+                            ),
+                            title: "40",
+                            subtitle: "Trend",
                           ),
                         ],
                       )),
@@ -241,6 +266,7 @@ class _MyAppState extends State<MyApp> {
                       sectionCards: CardsSection(
                         children: [
                           CustomCard(
+                            // add club icon here
                             icon: Icon(
                               Icons.sports_hockey_outlined,
                               color: Colors.black,
@@ -252,22 +278,31 @@ class _MyAppState extends State<MyApp> {
                           // card for player position
                           CustomCard(
                             icon: Icon(
-                              Icons.sports_soccer,
+                              Icons.table_rows_rounded,
                               color: Colors.black,
                               size: 40.0,
                             ),
-                            title: "Forward",
-                            subtitle: "Position",
+                            title: "2nd",
+                            subtitle: "Ranking",
                           ),
                           // card for player age
                           CustomCard(
                             icon: Icon(
-                              Icons.sports_soccer,
+                              Icons.stacked_bar_chart_rounded,
                               color: Colors.black,
                               size: 40.0,
                             ),
                             title: "33",
-                            subtitle: "Age",
+                            subtitle: "Streak",
+                          ),
+                          CustomCard(
+                            icon: Icon(
+                              Icons.show_chart_rounded,
+                              color: Colors.black,
+                              size: 40.0,
+                            ),
+                            title: "40",
+                            subtitle: "Trend",
                           ),
                         ],
                       )),
