@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:linkedin_iam_rich/widgets/header_row.dart';
+import 'package:linkedin_iam_rich/widgets/image_card.dart';
 import 'customCard.dart';
 import 'scoreRow.dart';
 import 'widgets/neo_text.dart';
@@ -142,30 +143,21 @@ class _MyAppState extends State<MyApp> {
                       sectionTitle: const SectionTitle(title: "Player\'s Info"),
                       sectionCards: CardsSection(
                         children: [
-                          CustomCard(
-                            icon: const Icon(
-                              Icons.sports_hockey_outlined,
-                              color: Colors.black,
-                              size: 40.0,
-                            ),
-                            title: snapshot.data[1]['short_name'],
-                            subtitle: "Klub",
-                          ),
+                          ImageCard(
+                              hasNetworkImage: true,
+                              imageUrl: snapshot.data[1]['logo'],
+                              title: snapshot.data[1]['short_name'],
+                              subtitle: "Klub"),
+                          // card for player position
+                          const ImageCard(
+                              hasNetworkImage: true,
+                              imageUrl: "https://i.imgur.com/O69b7nw.jpg",
+                              title: "Germany",
+                              subtitle: "Nationalität"),
                           // card for player position
                           const CustomCard(
-                            icon: Icon(
-                              //age icon
-                              Icons.map_rounded,
-                              color: Colors.black,
-                              size: 40.0,
-                            ),
-                            title: "Germany",
-                            subtitle: "Nationalität",
-                          ),
-                          // card for player position
-                          const CustomCard(
-                            icon: Icon(
-                              // icon for player strong foot
+                            cardIcon: Icon(
+                              // cardIcon for player strong foot
                               Icons.sports_soccer_outlined,
                               color: Colors.black,
                               size: 40.0,
@@ -174,19 +166,15 @@ class _MyAppState extends State<MyApp> {
                             subtitle: "Starker Fuß",
                           ),
                           // card for player position
-                          const CustomCard(
-                            icon: Icon(
-                              // icon for player number
-                              Icons.confirmation_num,
-                              color: Colors.black,
-                              size: 40.0,
-                            ),
-                            title: "1",
-                            subtitle: "Trikotnummer",
-                          ),
+                          ImageCard(
+                              hasNetworkImage: true,
+                              imageUrl: snapshot.data[1]['jersey_url'],
+                              title:
+                                  snapshot.data[0]['jersey_number'].toString(),
+                              subtitle: "Trikotnummer"),
                           // card for player age
                           const CustomCard(
-                            icon: Icon(
+                            cardIcon: Icon(
                               Icons.calendar_month_rounded,
                               color: Colors.black,
                               size: 40.0,
@@ -196,7 +184,7 @@ class _MyAppState extends State<MyApp> {
                           ),
                           // card for player age
                           const CustomCard(
-                            icon: Icon(
+                            cardIcon: Icon(
                               Icons.boy,
                               color: Colors.black,
                               size: 40.0,
@@ -206,12 +194,12 @@ class _MyAppState extends State<MyApp> {
                           ),
                         ],
                       )),
-                  const StatsSection(
+                  StatsSection(
                       sectionTitle: SectionTitle(title: "Matchday Stats"),
                       sectionCards: CardsSection(
                         children: [
                           CustomCard(
-                            icon: Icon(
+                            cardIcon: Icon(
                               Icons.sports_soccer_rounded,
                               color: Colors.black,
                               size: 40.0,
@@ -220,7 +208,7 @@ class _MyAppState extends State<MyApp> {
                             subtitle: "Versus",
                           ),
                           CustomCard(
-                            icon: Icon(
+                            cardIcon: Icon(
                               Icons.scoreboard_rounded,
                               color: Colors.black,
                               size: 40.0,
@@ -229,17 +217,25 @@ class _MyAppState extends State<MyApp> {
                             subtitle: "Result",
                           ),
                           CustomCard(
-                            icon: Icon(
-                              Icons.nordic_walking_rounded,
-                              color: Colors.black,
-                              size: 40.0,
-                            ),
-                            title: "Injured",
+                            cardIcon: snapshot.data[0]['injured'] == true
+                                ? Icon(
+                                    Icons.nordic_walking_rounded,
+                                    color: Colors.black,
+                                    size: 40.0,
+                                  )
+                                : Icon(
+                                    Icons.health_and_safety,
+                                    color: Colors.green,
+                                    size: 40.0,
+                                  ),
+                            title: snapshot.data[0]['injured'] == true
+                                ? "Injured"
+                                : "Healthy",
                             subtitle: "Condition",
                           ),
                           // card for player position
                           CustomCard(
-                            icon: Icon(
+                            cardIcon: Icon(
                               Icons.weekend_rounded,
                               color: Colors.black,
                               size: 40.0,
@@ -249,7 +245,7 @@ class _MyAppState extends State<MyApp> {
                           ),
                           // card for player age
                           CustomCard(
-                            icon: Icon(
+                            cardIcon: Icon(
                               Icons.local_fire_department_rounded,
                               color: Colors.black,
                               size: 40.0,
@@ -258,7 +254,7 @@ class _MyAppState extends State<MyApp> {
                             subtitle: "Trend",
                           ),
                           CustomCard(
-                            icon: Icon(
+                            cardIcon: Icon(
                               Icons.do_not_touch_rounded,
                               color: Colors.black,
                               size: 40.0,
@@ -267,7 +263,7 @@ class _MyAppState extends State<MyApp> {
                             subtitle: "Saves",
                           ),
                           CustomCard(
-                            icon: Icon(
+                            cardIcon: Icon(
                               Icons.sports_soccer_rounded,
                               color: Colors.black,
                               size: 40.0,
@@ -277,23 +273,18 @@ class _MyAppState extends State<MyApp> {
                           ),
                         ],
                       )),
-                  const StatsSection(
+                  StatsSection(
                     sectionTitle: SectionTitle(title: "Club Stats"),
                     sectionCards: CardsSection(
                       children: [
-                        CustomCard(
-                          // add club icon here
-                          icon: Icon(
-                            Icons.sports_hockey_outlined,
-                            color: Colors.black,
-                            size: 40.0,
-                          ),
-                          title: "Bochum",
-                          subtitle: "Club",
-                        ),
+                        ImageCard(
+                            hasNetworkImage: true,
+                            imageUrl: snapshot.data[1]['jersey_url'],
+                            title: snapshot.data[1]['abbreviation'],
+                            subtitle: "Jersey"),
                         // card for player position
                         CustomCard(
-                          icon: Icon(
+                          cardIcon: Icon(
                             Icons.table_rows_rounded,
                             color: Colors.black,
                             size: 40.0,
@@ -303,7 +294,7 @@ class _MyAppState extends State<MyApp> {
                         ),
                         // card for player age
                         CustomCard(
-                          icon: Icon(
+                          cardIcon: Icon(
                             Icons.stacked_bar_chart_rounded,
                             color: Colors.black,
                             size: 40.0,
@@ -312,7 +303,7 @@ class _MyAppState extends State<MyApp> {
                           subtitle: "Streak",
                         ),
                         CustomCard(
-                          icon: Icon(
+                          cardIcon: Icon(
                             Icons.show_chart_rounded,
                             color: Colors.black,
                             size: 40.0,
