@@ -42,11 +42,10 @@ Future<PlayerInfo> fetchContestants() async {
   }
 }
 
-// So, I am successfully getting the data that I want,
-// as I can see from the print methods, but I want to
-// return both playerData and clubData so I can use this
-// information later on FutureBuilder widget.
-// I am not sure how to do this, as I am new to Dart and Flutter.
+// NEXT STEPS:
+// 1. Fetch data from API
+// 2. Display data in UI
+// 3. Navigate to a new screen for Club Info
 
 // create a class to hold the data and put it in a Factory List
 class PlayerInfo {
