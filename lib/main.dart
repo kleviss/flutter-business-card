@@ -181,7 +181,7 @@ class _MyAppState extends State<MyApp> {
                             title: snapshot.data!.clubId
                                 .toString()
                                 .substring(0, 5),
-                            subtitle: "Club",
+                            subtitle: "Klub",
                           ),
                           // card for player position
                           const CustomCard(
@@ -192,28 +192,49 @@ class _MyAppState extends State<MyApp> {
                               size: 40.0,
                             ),
                             title: "Germany",
-                            subtitle: "Country",
+                            subtitle: "Nationalität",
                           ),
                           // card for player position
                           const CustomCard(
                             icon: Icon(
-                              //age icon
-                              Icons.map_rounded,
+                              // icon for player strong foot
+                              Icons.sports_soccer_outlined,
                               color: Colors.black,
                               size: 40.0,
                             ),
-                            title: "Germany",
-                            subtitle: "Country",
+                            title: "Rechts",
+                            subtitle: "Starker Fuß",
+                          ),
+                          // card for player position
+                          const CustomCard(
+                            icon: Icon(
+                              // icon for player number
+                              Icons.confirmation_num,
+                              color: Colors.black,
+                              size: 40.0,
+                            ),
+                            title: "1",
+                            subtitle: "Trikotnummer",
                           ),
                           // card for player age
                           const CustomCard(
                             icon: Icon(
-                              Icons.sports_soccer,
+                              Icons.calendar_month_rounded,
                               color: Colors.black,
                               size: 40.0,
                             ),
                             title: "33",
-                            subtitle: "Age",
+                            subtitle: "Alter",
+                          ),
+                          // card for player age
+                          const CustomCard(
+                            icon: Icon(
+                              Icons.boy,
+                              color: Colors.black,
+                              size: 40.0,
+                            ),
+                            title: "193 cm",
+                            subtitle: "Größe",
                           ),
                         ],
                       )),
@@ -223,7 +244,7 @@ class _MyAppState extends State<MyApp> {
                         children: [
                           CustomCard(
                             icon: Icon(
-                              Icons.healing,
+                              Icons.nordic_walking_rounded,
                               color: Colors.black,
                               size: 40.0,
                             ),
@@ -233,7 +254,7 @@ class _MyAppState extends State<MyApp> {
                           // card for player position
                           CustomCard(
                             icon: Icon(
-                              Icons.event_seat_rounded,
+                              Icons.weekend_rounded,
                               color: Colors.black,
                               size: 40.0,
                             ),
@@ -243,21 +264,21 @@ class _MyAppState extends State<MyApp> {
                           // card for player age
                           CustomCard(
                             icon: Icon(
-                              Icons.show_chart_rounded,
+                              Icons.local_fire_department_rounded,
                               color: Colors.black,
                               size: 40.0,
                             ),
-                            title: "40",
+                            title: "-6",
                             subtitle: "Trend",
                           ),
                           CustomCard(
                             icon: Icon(
-                              Icons.show_chart_rounded,
+                              Icons.do_not_touch_rounded,
                               color: Colors.black,
                               size: 40.0,
                             ),
-                            title: "40",
-                            subtitle: "Trend",
+                            title: "0",
+                            subtitle: "Saves",
                           ),
                         ],
                       )),
