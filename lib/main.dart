@@ -244,6 +244,24 @@ class _MyAppState extends State<MyApp> {
                         children: [
                           CustomCard(
                             icon: Icon(
+                              Icons.sports_soccer_rounded,
+                              color: Colors.black,
+                              size: 40.0,
+                            ),
+                            title: "Bochum",
+                            subtitle: "Versus",
+                          ),
+                          CustomCard(
+                            icon: Icon(
+                              Icons.scoreboard_rounded,
+                              color: Colors.black,
+                              size: 40.0,
+                            ),
+                            title: "Win",
+                            subtitle: "Result",
+                          ),
+                          CustomCard(
+                            icon: Icon(
                               Icons.nordic_walking_rounded,
                               color: Colors.black,
                               size: 40.0,
@@ -279,6 +297,15 @@ class _MyAppState extends State<MyApp> {
                             ),
                             title: "0",
                             subtitle: "Saves",
+                          ),
+                          CustomCard(
+                            icon: Icon(
+                              Icons.sports_soccer_rounded,
+                              color: Colors.black,
+                              size: 40.0,
+                            ),
+                            title: "Schalke 04",
+                            subtitle: "Next Match",
                           ),
                         ],
                       )),
