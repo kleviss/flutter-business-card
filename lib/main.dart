@@ -18,7 +18,7 @@ const String URL =
     'https://api.spitch.live/contestants?competition_id=6by3h89i2eykc341oz7lv1ddd';
 
 // function to call https://api.spitch.live/contestants?competition_id=6by3h89i2eykc341oz7lv1ddd
-Future<PlayerInfo> fetchContestants() async {
+Future<List<dynamic>> fetchContestants() async {
   final response = await http.get(Uri.parse(URL));
 
   if (response.statusCode == 200) {
@@ -33,9 +33,8 @@ Future<PlayerInfo> fetchContestants() async {
     var club =
         clubData.firstWhere((element) => element['id'] == player['club_id']);
     print(club);
-    ;
 
-    return PlayerInfo.fromJson(player);
+    return [player, club];
   } else {
     // If that call was not successful, throw an error.
     throw Exception('Failed to load post');
@@ -48,42 +47,6 @@ Future<PlayerInfo> fetchContestants() async {
 // 3. Navigate to a new screen for Club Info
 
 // create a class to hold the data and put it in a Factory List
-class PlayerInfo {
-  final String name;
-  final String surname;
-  final String id;
-  final String clubId;
-  final String position;
-  final int jerseyNumber;
-  final String image;
-  final int totalScore;
-  final int avgScore;
-
-  PlayerInfo(
-      {required this.name,
-      required this.surname,
-      required this.id,
-      required this.clubId,
-      required this.position,
-      required this.jerseyNumber,
-      required this.image,
-      required this.totalScore,
-      required this.avgScore});
-
-  factory PlayerInfo.fromJson(Map<String, dynamic> json) {
-    return PlayerInfo(
-      name: json['first_name'],
-      surname: json['last_name'],
-      id: json['id'],
-      clubId: json['club_id'],
-      position: json['position'],
-      jerseyNumber: json['jersey_number'],
-      image: json['avatar_urls']['large'],
-      totalScore: json['total_score'],
-      avgScore: json['avg_score'],
-    );
-  }
-}
 
 class MyApp extends StatefulWidget {
   final apiData;
@@ -100,7 +63,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     futureApiData = fetchContestants();
-
+    print("futureApiData " + futureApiData.toString());
     print(futureApiData);
   }
 
@@ -123,20 +86,28 @@ class _MyAppState extends State<MyApp> {
           backgroundColor: const Color(0xFF1DB954),
         ),
         backgroundColor: Colors.black12,
+        // use data for club and player in the future builder
         body: FutureBuilder(
           future: futureApiData,
           builder: (context, snapshot) {
+            // decode data and print in console
+            if (snapshot.hasData) {
+              print("snap ");
+              print(snapshot.data);
+            } else if (snapshot.hasError) {
+              return Text("${snapshot.error}");
+            }
             if (snapshot.hasData) {
               return ListView(
                 children: [
                   HeaderRow(
-                      playerAvatar: snapshot.data!.image,
-                      clubName:
-                          snapshot.data!.clubId.toString().substring(0, 8),
-                      playerName: snapshot.data!.name,
-                      playerSurname: snapshot.data!.surname,
-                      playerPosition: snapshot.data!.position),
-                  const ScoreRow(
+                    playerAvatar: snapshot.data[0]['avatar_urls']['large'],
+                    clubName: snapshot.data[1]['name'],
+                    playerName: snapshot.data[0]['first_name'],
+                    playerSurname: snapshot.data[0]['last_name'],
+                    playerPosition: snapshot.data[0]['position'],
+                  ),
+                  ScoreRow(
                     children: [
                       NeoText(
                         text: "⚽️Goals: 2",
@@ -160,10 +131,10 @@ class _MyAppState extends State<MyApp> {
                   ScoreRow(
                     children: [
                       NeoText(
-                        text: '🔥Score: ${snapshot.data!.totalScore}',
+                        text: '🔥Score: ${snapshot.data[0]['total_score']}',
                       ),
                       NeoText(
-                        text: "📈Value: ${snapshot.data!.avgScore}¢",
+                        text: "📈Value: ${snapshot.data[0]['market_value']}¢",
                       ),
                     ],
                   ),
@@ -177,9 +148,7 @@ class _MyAppState extends State<MyApp> {
                               color: Colors.black,
                               size: 40.0,
                             ),
-                            title: snapshot.data!.clubId
-                                .toString()
-                                .substring(0, 5),
+                            title: snapshot.data[1]['short_name'],
                             subtitle: "Klub",
                           ),
                           // card for player position
@@ -309,55 +278,57 @@ class _MyAppState extends State<MyApp> {
                         ],
                       )),
                   const StatsSection(
-                      sectionTitle: SectionTitle(title: "Club Stats"),
-                      sectionCards: CardsSection(
-                        children: [
-                          CustomCard(
-                            // add club icon here
-                            icon: Icon(
-                              Icons.sports_hockey_outlined,
-                              color: Colors.black,
-                              size: 40.0,
-                            ),
-                            title: "Bochum",
-                            subtitle: "Club",
+                    sectionTitle: SectionTitle(title: "Club Stats"),
+                    sectionCards: CardsSection(
+                      children: [
+                        CustomCard(
+                          // add club icon here
+                          icon: Icon(
+                            Icons.sports_hockey_outlined,
+                            color: Colors.black,
+                            size: 40.0,
                           ),
-                          // card for player position
-                          CustomCard(
-                            icon: Icon(
-                              Icons.table_rows_rounded,
-                              color: Colors.black,
-                              size: 40.0,
-                            ),
-                            title: "2nd",
-                            subtitle: "Ranking",
+                          title: "Bochum",
+                          subtitle: "Club",
+                        ),
+                        // card for player position
+                        CustomCard(
+                          icon: Icon(
+                            Icons.table_rows_rounded,
+                            color: Colors.black,
+                            size: 40.0,
                           ),
-                          // card for player age
-                          CustomCard(
-                            icon: Icon(
-                              Icons.stacked_bar_chart_rounded,
-                              color: Colors.black,
-                              size: 40.0,
-                            ),
-                            title: "33",
-                            subtitle: "Streak",
+                          title: "2nd",
+                          subtitle: "Ranking",
+                        ),
+                        // card for player age
+                        CustomCard(
+                          icon: Icon(
+                            Icons.stacked_bar_chart_rounded,
+                            color: Colors.black,
+                            size: 40.0,
                           ),
-                          CustomCard(
-                            icon: Icon(
-                              Icons.show_chart_rounded,
-                              color: Colors.black,
-                              size: 40.0,
-                            ),
-                            title: "40",
-                            subtitle: "Trend",
+                          title: "33",
+                          subtitle: "Streak",
+                        ),
+                        CustomCard(
+                          icon: Icon(
+                            Icons.show_chart_rounded,
+                            color: Colors.black,
+                            size: 40.0,
                           ),
-                        ],
-                      )),
+                          title: "40",
+                          subtitle: "Trend",
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               );
             } else if (snapshot.hasError) {
               return Text("${snapshot.error}");
             }
+
             // By default, show a loading spinner.
             return const CircularProgressIndicator();
           },
