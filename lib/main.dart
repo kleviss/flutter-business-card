@@ -108,7 +108,7 @@ class _MyAppState extends State<MyApp> {
                     playerSurname: snapshot.data[0]['last_name'],
                     playerPosition: snapshot.data[0]['position'],
                   ),
-                  ScoreRow(
+                  const ScoreRow(
                     children: [
                       NeoText(
                         text: "⚽️Goals: 2",
@@ -144,13 +144,25 @@ class _MyAppState extends State<MyApp> {
                       sectionCards: CardsSection(
                         children: [
                           ImageCard(
-                              hasNetworkImage: true,
-                              imageUrl: snapshot.data[1]['logo'],
-                              title: snapshot.data[1]['short_name'],
-                              subtitle: "Klub"),
+                            hasNetworkImage: true,
+                            hasTouchEvent: true,
+                            clubData: [
+                              snapshot.data[0]['first_name'],
+                              snapshot.data[0]['last_name'],
+                              snapshot.data[0]['position'],
+                              snapshot.data[0]['total_score'],
+                              snapshot.data[0]['market_value'],
+                              snapshot.data[0]['avatar_urls']['large'],
+                              snapshot.data[1]['name'],
+                            ],
+                            imageUrl: snapshot.data[1]['logo'],
+                            title: snapshot.data[1]['short_name'],
+                            subtitle: "Klub",
+                          ),
                           // card for player position
                           const ImageCard(
                               hasNetworkImage: true,
+                              hasTouchEvent: false,
                               imageUrl: "https://i.imgur.com/O69b7nw.jpg",
                               title: "Germany",
                               subtitle: "Nationalität"),
@@ -195,10 +207,10 @@ class _MyAppState extends State<MyApp> {
                         ],
                       )),
                   StatsSection(
-                      sectionTitle: SectionTitle(title: "Matchday Stats"),
+                      sectionTitle: const SectionTitle(title: "Matchday Stats"),
                       sectionCards: CardsSection(
                         children: [
-                          CustomCard(
+                          const CustomCard(
                             cardIcon: Icon(
                               Icons.sports_soccer_rounded,
                               color: Colors.black,
@@ -207,7 +219,7 @@ class _MyAppState extends State<MyApp> {
                             title: "Bochum",
                             subtitle: "Versus",
                           ),
-                          CustomCard(
+                          const CustomCard(
                             cardIcon: Icon(
                               Icons.scoreboard_rounded,
                               color: Colors.black,
@@ -218,12 +230,12 @@ class _MyAppState extends State<MyApp> {
                           ),
                           CustomCard(
                             cardIcon: snapshot.data[0]['injured'] == true
-                                ? Icon(
+                                ? const Icon(
                                     Icons.nordic_walking_rounded,
                                     color: Colors.black,
                                     size: 40.0,
                                   )
-                                : Icon(
+                                : const Icon(
                                     Icons.health_and_safety,
                                     color: Colors.green,
                                     size: 40.0,
@@ -234,7 +246,7 @@ class _MyAppState extends State<MyApp> {
                             subtitle: "Condition",
                           ),
                           // card for player position
-                          CustomCard(
+                          const CustomCard(
                             cardIcon: Icon(
                               Icons.weekend_rounded,
                               color: Colors.black,
@@ -244,7 +256,7 @@ class _MyAppState extends State<MyApp> {
                             subtitle: "Lineup",
                           ),
                           // card for player age
-                          CustomCard(
+                          const CustomCard(
                             cardIcon: Icon(
                               Icons.local_fire_department_rounded,
                               color: Colors.black,
@@ -253,7 +265,7 @@ class _MyAppState extends State<MyApp> {
                             title: "-6",
                             subtitle: "Trend",
                           ),
-                          CustomCard(
+                          const CustomCard(
                             cardIcon: Icon(
                               Icons.do_not_touch_rounded,
                               color: Colors.black,
@@ -262,7 +274,7 @@ class _MyAppState extends State<MyApp> {
                             title: "0",
                             subtitle: "Saves",
                           ),
-                          CustomCard(
+                          const CustomCard(
                             cardIcon: Icon(
                               Icons.sports_soccer_rounded,
                               color: Colors.black,
@@ -274,7 +286,7 @@ class _MyAppState extends State<MyApp> {
                         ],
                       )),
                   StatsSection(
-                    sectionTitle: SectionTitle(title: "Club Stats"),
+                    sectionTitle: const SectionTitle(title: "Club Stats"),
                     sectionCards: CardsSection(
                       children: [
                         ImageCard(
@@ -283,7 +295,7 @@ class _MyAppState extends State<MyApp> {
                             title: snapshot.data[1]['abbreviation'],
                             subtitle: "Jersey"),
                         // card for player position
-                        CustomCard(
+                        const CustomCard(
                           cardIcon: Icon(
                             Icons.table_rows_rounded,
                             color: Colors.black,
@@ -293,7 +305,7 @@ class _MyAppState extends State<MyApp> {
                           subtitle: "Ranking",
                         ),
                         // card for player age
-                        CustomCard(
+                        const CustomCard(
                           cardIcon: Icon(
                             Icons.stacked_bar_chart_rounded,
                             color: Colors.black,
@@ -302,7 +314,7 @@ class _MyAppState extends State<MyApp> {
                           title: "33",
                           subtitle: "Streak",
                         ),
-                        CustomCard(
+                        const CustomCard(
                           cardIcon: Icon(
                             Icons.show_chart_rounded,
                             color: Colors.black,
@@ -323,6 +335,31 @@ class _MyAppState extends State<MyApp> {
             // By default, show a loading spinner.
             return const CircularProgressIndicator();
           },
+        ),
+      ),
+    );
+  }
+}
+
+class Club extends StatelessWidget {
+  const Club({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      // Mateial app with app bar
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Club Page',
+              style: TextStyle(
+                color: Colors.white,
+                fontFamily: 'Lato',
+                fontWeight: FontWeight.bold,
+              )),
+          backgroundColor: const Color(0xFF1DB954),
+        ),
+        body: const Center(
+          child: Text('Club Page'),
         ),
       ),
     );

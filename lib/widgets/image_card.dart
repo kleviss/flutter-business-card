@@ -1,9 +1,12 @@
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import 'package:linkedin_iam_rich/main.dart';
 
 class ImageCard extends StatelessWidget {
   final bool hasNetworkImage;
+  final bool? hasTouchEvent;
+  final List<dynamic>? clubData;
   final String? imageUrl;
   final String title;
   final String subtitle;
@@ -11,6 +14,8 @@ class ImageCard extends StatelessWidget {
   const ImageCard(
       {super.key,
       required this.hasNetworkImage,
+      this.hasTouchEvent = false,
+      this.clubData,
       this.imageUrl,
       required this.title,
       required this.subtitle});
@@ -32,20 +37,32 @@ class ImageCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               //Asset Image is used to load the image from the assets folder
-              Container(
-                width: 45.0,
-                height: 45.0,
-                transform: Matrix4.translationValues(0.0, -2.0, 0.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.0),
-                  image: DecorationImage(
-                    image: hasNetworkImage
-                        ? NetworkImage(imageUrl!)
-                        : // Asset image with path to the images/germany.jpg
-                        AssetImage(
-                            imageUrl!,
-                          ) as ImageProvider,
-                    fit: BoxFit.cover,
+              GestureDetector(
+                onTap: () {
+                  hasTouchEvent!
+                      ? Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) {
+                            return Club();
+                          }),
+                        )
+                      : null;
+                },
+                child: Container(
+                  width: 45.0,
+                  height: 45.0,
+                  transform: Matrix4.translationValues(0.0, -2.0, 0.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                    image: DecorationImage(
+                      image: hasNetworkImage
+                          ? NetworkImage(imageUrl!)
+                          : // Asset image with path to the images/germany.jpg
+                          AssetImage(
+                              imageUrl!,
+                            ) as ImageProvider,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
