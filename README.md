@@ -2,6 +2,14 @@
 
 A Flutter project to revisit Flutter by creating a simple profile page app.
 
+# Screen Recordings 
+
+[Google Drive Link](https://drive.google.com/drive/folders/1YXRTGeLCwkO3_XqADC-KrCDTSGVUcaSz?usp=sharing)
+
+# Screenshot 10.09.2022 (dynamic)
+
+<img width="607" alt="Bildschirmfoto 2022-09-10 um 23 37 06" src="https://user-images.githubusercontent.com/37313988/189502587-6c7272d6-9b8a-4678-9538-2b6447b1c137.png">
+
 # Screenshot 09.09.2022
 
 <img width="607" alt="Bildschirmfoto 2022-09-09 um 08 59 57" src="https://user-images.githubusercontent.com/37313988/189290651-2c2b9799-e81f-480e-b340-13be01aa9873.png">
