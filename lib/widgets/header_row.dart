@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:linkedin_iam_rich/providers/model_theme.dart';
+import 'package:provider/provider.dart';
+
 import 'neo_text.dart';
 
 class HeaderRow extends StatelessWidget {
@@ -18,69 +21,73 @@ class HeaderRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(8, 10, 8, 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Column(
-            children: <Widget>[
-              CircleAvatar(
-                radius: 50.0,
-                backgroundImage: NetworkImage(playerAvatar),
-              ),
-              NeoText(text: clubName, fontSize: 10.0),
-              Text(
-                '$playerName $playerSurname',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.0,
-                  fontFamily: 'Lato',
-                ),
-              ),
-              Chip(
-                label: Text(playerPosition.toUpperCase(),
-                    style: const TextStyle(
+    return Consumer<ModelTheme>(
+      builder: (_, themeNotifier, __) {
+        return Padding(
+          padding: const EdgeInsets.fromLTRB(8, 10, 8, 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                children: <Widget>[
+                  CircleAvatar(
+                    radius: 50.0,
+                    backgroundImage: NetworkImage(playerAvatar),
+                  ),
+                  NeoText(text: clubName, fontSize: 10.0),
+                  Text(
+                    '$playerName $playerSurname',
+                    style: TextStyle(
+                      color: themeNotifier.isDark ? Colors.white : Colors.black,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.0,
+                      fontFamily: 'Lato',
+                    ),
+                  ),
+                  Chip(
+                    label: Text(playerPosition.toUpperCase(),
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 10.0,
+                        )),
+                    padding: const EdgeInsets.all(8.0),
+                    visualDensity: VisualDensity.compact,
+                    backgroundColor: Colors.white,
+                    shape: const StadiumBorder(
+                      side: BorderSide(
+                        color: Color(0xFF1DB954),
+                        width: 1.0,
+                      ),
+                    ),
+                    avatar: const CircleAvatar(
+                      backgroundColor: Colors.black,
+                      child: Icon(
+                        Icons.sports_soccer,
+                        color: Colors.white,
+                      ),
+                    ),
+                    labelStyle: const TextStyle(
                       color: Colors.black,
-                      fontSize: 10.0,
-                    )),
-                padding: const EdgeInsets.all(8.0),
-                visualDensity: VisualDensity.compact,
-                backgroundColor: Colors.white,
-                shape: const StadiumBorder(
-                  side: BorderSide(
-                    color: Color(0xFF1DB954),
-                    width: 1.0,
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.0,
+                      fontFamily: 'Lato',
+                    ),
                   ),
-                ),
-                avatar: const CircleAvatar(
-                  backgroundColor: Colors.black,
-                  child: Icon(
-                    Icons.sports_soccer,
-                    color: Colors.white,
+                  const SizedBox(
+                    height: 0.0,
+                    width: 50.0,
+                    // child: Divider(
+                    //   color: Colors.white,
+                    // ),
                   ),
-                ),
-                labelStyle: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 12.0,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.0,
-                  fontFamily: 'Lato',
-                ),
-              ),
-              const SizedBox(
-                height: 0.0,
-                width: 50.0,
-                // child: Divider(
-                //   color: Colors.white,
-                // ),
+                ],
               ),
             ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

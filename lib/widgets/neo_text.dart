@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:linkedin_iam_rich/providers/model_theme.dart';
+import 'package:provider/provider.dart';
 
 class NeoText extends StatelessWidget {
   final String text;
@@ -12,15 +14,19 @@ class NeoText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: TextStyle(
-        color: Colors.white,
-        fontSize: fontSize,
-        fontWeight: FontWeight.bold,
-        letterSpacing: 1.0,
-        fontFamily: 'Lato',
-      ),
+    return Consumer<ModelTheme>(
+      builder: (_, themeNotifier, __) {
+        return Text(
+          text,
+          style: TextStyle(
+            color: themeNotifier.isDark ? Colors.white : Colors.black,
+            fontSize: fontSize,
+            fontFamily: 'Lato',
+            fontWeight: FontWeight.bold,
+            letterSpacing: 1.0,
+          ),
+        );
+      },
     );
   }
 }
